@@ -9,6 +9,7 @@
     <Description>Parses chemical formulae into C# molecule objects, and computes the mass.</Description>
     <Copyright>Justin Wilkinson 2020</Copyright>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <RepositoryUrl>https://github.com/JustinWilkinson/Molecules</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
