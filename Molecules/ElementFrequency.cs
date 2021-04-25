@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Molecules
+﻿namespace Molecules
 {
     /// <summary>
     /// Represents the frequency of an element within a molecule.
