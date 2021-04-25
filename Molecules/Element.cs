@@ -1,11 +1,9 @@
-﻿using System;
-
-namespace Molecules
+﻿namespace Molecules
 {
     /// <summary>
     /// Represents an element. 
     /// </summary>
-    public class Element : IEquatable<Element>
+    public record Element
     {
         /// <summary>
         /// The atomic number of the element, this must be unique within an <see cref="ElementCollection"/>.
@@ -32,13 +30,6 @@ namespace Molecules
         /// </summary>
         /// <returns>The atomic number, name and symbol of the element in the format "AtomicNumber Name (Symbol)".</returns>
         public override string ToString() => $"{AtomicNumber} {Name} ({Symbol})";
-
-        /// <summary>
-        /// Checks if elements are equal by comparing property values.
-        /// </summary>
-        /// <param name="other">Other element to compare to.</param>
-        /// <returns>True if equal, false if not.</returns>
-        public bool Equals(Element other) => AtomicNumber == other.AtomicNumber && Symbol == other.Symbol && Name == other.Name && AtomicMass == other.AtomicMass;
 
         #region PeriodicTable
         public static Element H { get; } = new Element { AtomicNumber = 1, Name = "Hydrogen", Symbol = "H", AtomicMass = 1.00794 };

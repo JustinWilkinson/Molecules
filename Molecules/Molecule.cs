@@ -9,7 +9,7 @@ namespace Molecules
     /// <summary>
     /// Represents a molecule. Contains static methods to parse strings into molecule objects.
     /// </summary>
-    public class Molecule
+    public record Molecule
     {
         /// <summary>
         /// The collection of elements in a molecule and their respective frequencies.
@@ -78,9 +78,9 @@ namespace Molecules
         /// </exception>
         public static Molecule Parse(string formula, ElementCollection elementCollection)
         {
-            if (formula == null)
+            if (formula is null)
             {
-                throw new ArgumentNullException("Formula should not be null!");
+                throw new ArgumentNullException(nameof(formula), "Formula should not be null!");
             }
             else if (string.IsNullOrWhiteSpace(formula))
             {
@@ -122,8 +122,8 @@ namespace Molecules
         /// Parses a string representation of a chemical formula into a Molecule Object using the provided elementCollection as a reference.
         /// </summary>
         /// <param name="formula">Formula to parse.</param>
-        /// <param name="molecule">The output molecule, will be null if false returned.</param>
-        /// <returns>True if parse completed successfully, otherwise false..</returns>
+        /// <param name="molecule">The output molecule, will be null if false is returned.</param>
+        /// <returns>True if parse completed successfully, otherwise false.</returns>
         public static bool TryParse(string formula, ElementCollection elementCollection, out Molecule molecule)
         {
             try
