@@ -41,6 +41,16 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event_name == 'push'
     steps:
+
+      - name: Install dependencies
+        run: dotnet restore
+
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+
+      - name: Pack
+        run: dotnet pack --configuration Release Molecules/Molecules.csproj --output .
+
       - uses: actions/checkout@v2
       - name: publish to nuget.org on version change
         id: publish_nuget
@@ -51,9 +61,6 @@ jobs:
           TAG_COMMIT: true
           TAG_FORMAT: v*
           NUGET_KEY: ${{secrets.NUGET_KEY}}
-      
-      - name: Pack
-        run: dotnet pack --configuration Release Molecules/Molecules.csproj --output .
 
       - name: Publish to github packages
         uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
