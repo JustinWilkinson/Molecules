@@ -14,7 +14,7 @@ on:
       - main
 jobs:
 
-  # Build, test and publish (if this is a push/merge).
+  # Build and test.
   build-and-test:
     runs-on: ubuntu-latest
   
@@ -34,10 +34,8 @@ jobs:
 
       - name: Test
         run: dotnet test --no-restore --verbosity normal
-      
-      - name: Pack
-        run: dotnet pack --no-build --configuration Release Molecules/Molecules.csproj --output .
 
+  # Publish package if this is a merge to main.
   publish-package:
     needs: build-and-test
     runs-on: ubuntu-latest
@@ -54,6 +52,9 @@ jobs:
           TAG_FORMAT: v*
           NUGET_KEY: ${{secrets.NUGET_KEY}}
       
+      - name: Pack
+        run: dotnet pack --no-build --configuration Release Molecules/Molecules.csproj --output .
+
       - name: Publish to github packages
         uses: tanaka-takayoshi/nuget-publish-to-github-packages-action@v2.1
         with:
