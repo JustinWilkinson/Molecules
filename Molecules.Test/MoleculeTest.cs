@@ -83,9 +83,9 @@ namespace Molecules.Test
             var frequencies = molecule.ElementFrequencies.Select(x => x.Value).ToList();
 
             // Assert
-            Assert.Equal(1, molecule.ElementFrequencies.Count);
-            Assert.Equal(Element.H, frequencies[0].Element);
-            Assert.Equal(1, frequencies[0].Frequency);
+            var frequency = Assert.Single(molecule.ElementFrequencies).Value;
+            Assert.Equal(Element.H, frequency.Element);
+            Assert.Equal(1, frequency.Frequency);
             Assert.Equal(1.00794, molecule.Mass);
         }
 
@@ -100,9 +100,9 @@ namespace Molecules.Test
             var frequencies = molecule.ElementFrequencies.Select(x => x.Value).ToList();
 
             // Assert
-            Assert.Equal(1, molecule.ElementFrequencies.Count);
-            Assert.Equal(Element.He, frequencies[0].Element);
-            Assert.Equal(1, frequencies[0].Frequency);
+            var frequency = Assert.Single(molecule.ElementFrequencies).Value;
+            Assert.Equal(Element.He, frequency.Element);
+            Assert.Equal(1, frequency.Frequency);
             Assert.Equal(4.002602, molecule.Mass);
         }
 
